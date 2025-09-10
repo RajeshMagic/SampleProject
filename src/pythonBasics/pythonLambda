@@ -1,0 +1,115 @@
+"""
+==========================================
+Python Lambda Functions - Comprehensive Examples
+==========================================
+
+This script demonstrates:
+- Basic lambda functions
+- Lambda with multiple arguments
+- Lambda used inside another function
+- Returning lambdas (closures: doubler, tripler, etc.)
+- Comparison with normal function definitions
+"""
+
+print("\n==========================")
+print("1. Basic Lambda Function")
+print("==========================")
+
+# A lambda function is like a "mini function" without a name.
+# Syntax: lambda arguments : expression
+
+x = lambda a: a + 10
+print("Lambda: Add 10 to 5 ->", x(5))
+print("Important Note: Lambdas can only contain ONE expression (not multiple statements).")
+
+
+print("\n==========================")
+print("2. Lambda with Multiple Arguments")
+print("==========================")
+
+multiply = lambda a, b: a * b
+print("Lambda: Multiply 5 and 6 ->", multiply(5, 6))
+
+summation = lambda a, b, c: a + b + c
+print("Lambda: Sum of (5, 6, 2) ->", summation(5, 6, 2))
+
+print("Important Note: You can pass as many arguments as you want, "
+      "but the lambda must return only a single expression.")
+
+
+print("\n==========================")
+print("3. Normal Function vs Lambda Function")
+print("==========================")
+
+# Normal function
+def add_ten(a):
+    return a + 10
+
+# Lambda function
+add_ten_lambda = lambda a: a + 10
+
+print("Normal Function (10 + 5):", add_ten(5))
+print("Lambda Function   (10 + 5):", add_ten_lambda(5))
+
+print("Important Note: Both work the same, but lambda is shorter "
+      "and often used in quick, one-line operations.")
+
+
+print("\n==========================")
+print("4. Lambda Inside Another Function (Closure)")
+print("==========================")
+
+# A function returning a lambda
+def myfunc(n):
+    return lambda a: a * n
+
+# Create different multiplier functions
+mydoubler = myfunc(2)  # multiplies any number by 2
+mytripler = myfunc(3)  # multiplies any number by 3
+
+print("Doubler (11 * 2):", mydoubler(11))
+print("Tripler (11 * 3):", mytripler(11))
+
+print("Important Note: Here 'n' is remembered inside the returned lambda function. "
+      "This is called a closure.")
+
+
+print("\n==========================")
+print("5. Using Multiple Returned Lambdas")
+print("==========================")
+
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+
+print("mydoubler(11) ->", mydoubler(11))
+print("mytripler(11) ->", mytripler(11))
+
+print("Important Note: Same function 'myfunc' is used to create different behavior "
+      "based on the value of 'n'.")
+
+
+print("\n==========================")
+print("6. Lambda with Built-in Methods")
+print("==========================")
+
+nums = [100, 50, 65, 82, 23]
+
+# Sort numbers by closeness to 50 using lambda
+nums.sort(key=lambda n: abs(n - 50))
+print("Sorted by closeness to 50:", nums)
+
+# Using lambda with map() to square numbers
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x ** 2, numbers))
+print("Squares using lambda & map:", squared)
+
+# Using lambda with filter() to filter even numbers
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print("Even numbers using lambda & filter:", evens)
+
+print("Important Note: Lambdas are very useful with built-in methods like map(), filter(), and sort().")
+
+
+print("\n===================================")
+print("All Lambda Function Concepts Demonstrated!")
+print("===================================")
